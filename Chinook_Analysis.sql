@@ -112,7 +112,6 @@ SELECT CustomerName, country, Total FROM bestCustomers WHERE Ranking = 1;
 --
 
 
-
 --Numbers of customers and revenues by Employees
 SELECT e.LastName ||' '||e.FirstName AS SupportName, count(DISTINCT c.CustomerId) AS Customers, SUM(i.Total) AS Revenue
 FROM customers c 
@@ -158,10 +157,10 @@ GROUP BY mt.Name;
 --
 
 -- #1 artist in each playlist w/ numbers of tracks
-WITH playlistArtist AS(
+WITH tempo AS (
 SELECT 
-	pt.PlaylistId,
-	a2.Name,
+	pt.PlaylistId AS Playlist,
+	a2.Name AS Name,
 	count(a2.Name) AS Countt,
 	RANK () OVER (PARTITION BY pt.PlaylistId ORDER BY count(a2.Name) DESC) AS Ranking
 FROM 
@@ -172,9 +171,14 @@ JOIN playlist_track pt ON t.TrackId = pt.TrackId
 GROUP BY pt.PlaylistId , a2.Name 
 HAVING 
 	pt.PlaylistId <> 8
-)SELECT PlaylistId, Name, Countt AS trackCount FROM playlistArtist GROUP BY PlaylistId HAVING Ranking = 1;
+)SELECT 
+	Playlist,
+	CASE WHEN Countt = 1 THEN 'Multiple Artists' ELSE Name END AS Name,
+	Countt
+FROM tempo
+GROUP BY Playlist
+HAVING Ranking = 1;
 --
-
 
 
 /* === Business Analysis === */
@@ -197,7 +201,8 @@ GROUP BY InvYear;
 SELECT
 	g.Name,
 	count(ii.Quantity) AS UnitSold,
-	SUM(ii.UnitPrice) AS Income
+	SUM(ii.UnitPrice) AS Income,
+	ROUND(CAST(count(ii.Quantity) as float) / (SELECT SUM(ii2.Quantity) FROM invoice_items ii2) *100,2) AS Pct
 FROM 
 	invoice_items ii
 	JOIN invoices i ON 	ii.InvoiceId = i.InvoiceId 
@@ -224,14 +229,14 @@ GROUP BY
 	a2.Name
 ORDER BY
 	Income DESC;
-
 --
 
 --Country Income Ranking
 SELECT DISTINCT 
 	i.BillingCountry AS Country,
 	SUM(ii.Quantity) AS TracksSold,
-	SUM(ii.UnitPrice) AS Income
+	SUM(ii.UnitPrice) AS Income,
+	ROUND(CAST(count(ii.Quantity) as float) / (SELECT SUM(ii2.Quantity) FROM invoice_items ii2) *100,2) AS Pct
 FROM 
 	invoices i
 	JOIN invoice_items ii ON i.InvoiceId = ii.InvoiceId
@@ -256,7 +261,7 @@ GROUP BY
 	Country, InvYear, t.GenreId;
 --
 
--- How many tracks have been purchased vs not purchased?
+-- How many tracks have been purchased vs not purchased? / Why so many unsold track and what to do ?
 SELECT
 	COUNT(DISTINCT TrackId) AS UniqueTracks_Total,
 	(
@@ -278,6 +283,7 @@ FROM (
 	FROM tracks t 
 	LEFT JOIN invoice_items ii ON t.TrackId = ii.TrackId
 )
+
 --
 
 
