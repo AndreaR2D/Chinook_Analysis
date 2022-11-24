@@ -5,7 +5,7 @@
  * - Genre
  */
 
-/*=== Countries Analysis === */
+	/*=== Countries Analysis === */
 
 
 --Countries Ranking by Customers and Purchase
@@ -65,9 +65,9 @@ GROUP BY Country, t.GenreId
 GROUP BY Country ;
 --
 
-/* ==================== */
-
-/*=== Customers analysis ===*/
+	/* ======================== */
+	
+	/*=== Customers analysis ===*/
 
 
 --Numbers of customers by country
@@ -111,19 +111,24 @@ GROUP BY
 SELECT CustomerName, country, Total FROM bestCustomers WHERE Ranking = 1;
 --
 
-
---Numbers of customers and revenues by Employees
-SELECT e.LastName ||' '||e.FirstName AS SupportName, count(DISTINCT c.CustomerId) AS Customers, SUM(i.Total) AS Revenue
-FROM customers c 
-JOIN employees e ON c.SupportRepId = e.EmployeeId 
+--Employees best clients
+WITH Customersranking AS(
+SELECT
+	e.LastName AS Employee,
+	c.LastName AS Customer,
+	SUM(i.Total) AS AmountSpent,
+	DENSE_RANK() OVER (PARTITION BY e.LastName  ORDER BY SUM(i.Total) DESC) AS Ranking 
+FROM employees e 
+JOIN customers c ON e.EmployeeId = c.SupportRepId 
 JOIN invoices i ON c.CustomerId = i.CustomerId 
-GROUP by SupportName
-ORDER BY Revenue DESC;
+GROUP BY Employee, Customer
+)SELECT Employee, Customer, AmountSpent FROM Customersranking WHERE Ranking = 1;
 --
 
-/* ==================== */
 
-/* ===Tracks analysis=== */
+	/* ===================== */
+
+	/* ===Tracks analysis=== */
 
 
 --Number of purchase for each tracks
@@ -180,8 +185,8 @@ GROUP BY Playlist
 HAVING Ranking = 1;
 --
 
-
-/* === Business Analysis === */
+	/* ========================= */
+	/* === Business Analysis === */
 
 --Yearly Income
 SELECT DISTINCT	
@@ -261,7 +266,7 @@ GROUP BY
 	Country, InvYear, t.GenreId;
 --
 
--- How many tracks have been purchased vs not purchased? / Why so many unsold track and what to do ?
+--How many tracks have been purchased vs not purchased? / Why so many unsold track and what to do ?
 SELECT
 	COUNT(DISTINCT TrackId) AS UniqueTracks_Total,
 	(
@@ -286,13 +291,58 @@ FROM (
 
 --
 
+--Numbers of customers and revenues by Employees
+SELECT
+	e.LastName ||' '||e.FirstName AS SupportName,
+	count(DISTINCT c.CustomerId) AS Customers,
+	date() - STRFTIME('%Y', e.HireDate) AS YearsActive,
+	SUM(i.Total) AS Revenue
+FROM 
+	customers c 
+JOIN employees e ON c.SupportRepId = e.EmployeeId 
+JOIN invoices i ON c.CustomerId = i.CustomerId 
+GROUP by 
+	SupportName
+ORDER BY 
+	Revenue DESC;
+--
 
-/* ==================== */
+--Employees benefit per year (No invoices between the hiring date and 2009)
+SELECT
+	e.LastName AS Employee,
+	STRFTIME('%Y', i.InvoiceDate) AS InvYear,
+	SUM(i.Total) AS SalesAmount
+FROM employees e 
+JOIN customers c ON e.EmployeeId = c.SupportRepId 
+JOIN invoices i ON c.CustomerId = i.CustomerId 
+GROUP BY Employee, InvYear;
+--
 
-/* === Correlation Analysis === */
+	/* ============ */
+	/* === MISC=== */
 
--- A FAIRE EN PYTHON
+--HR Hierarchy
+WITH tempo AS (
+	SELECT EmployeeId , LastName , 1 AS niv,
+	null AS Rank_1,
+	null AS Rank_2
+	FROM employees 
+	WHERE ReportsTo is null
+UNION ALL
+	SELECT e.EmployeeId , e.LastName , niv +1,
+	CASE WHEN niv = 1 THEN t.LastName ELSE t.Rank_1 END AS Rank_1,
+	CASE WHEN niv = 2 THEN t.LastName ELSE t.Rank_2  END AS Rank_2
+	FROM tempo t
+	JOIN employees e ON t.EmployeeId = e.ReportsTo 
+)SELECT * from tempo;
+--
+
+	/* ============================ */
+
+	/* === Correlation Analysis === */
+
+-- WIP
 
 
-/* ==================== */
+/* ======--#END#--======== */
 
