@@ -1,7 +1,11 @@
-# Chinook_Analysis
+# Chinook DB Analysis
 Analysis of the chinook test DB From https://www.sqlitetutorial.net
 
-## Quantitative analysis: Countries, Customers, Tracks and Artists
+I'm using this DB to practice data analysis tools such as SQL, PowerBi and R. This project is meant to evolve following my learning steps.
+
+# SQL
+
+## Quantitative & Qualitative analysis
 
 ### Countries
 - Countries Ranking by Customers and Purchase
@@ -30,6 +34,6 @@ Analysis of the chinook test DB From https://www.sqlitetutorial.net
 - Revenue per Country per Year per Genre
 - Best sellings artists and genre
 
-## Correlation Analysis 
+# PowerBi
 
-***WIP***
+## Business dashboard
