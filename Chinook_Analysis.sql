@@ -150,8 +150,11 @@ SELECT g.Name AS Genre, COUNT(g.Name) AS GenreCount
 from tracks t 
 JOIN genres g ON t.GenreId = g.GenreId 
 GROUP BY Genre;
-
 --
+
+--Track lengths
+--
+
 
 --Protected vs. non-protected media types popularity
 SELECT mt.Name, count(DISTINCT t.TrackId) AS Uniquetrack, count(t.TrackId) AS totalTrack
@@ -336,6 +339,7 @@ UNION ALL
 	JOIN employees e ON t.EmployeeId = e.ReportsTo 
 )SELECT * from tempo;
 --
+
 
 	/* ============================ */
 
