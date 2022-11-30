@@ -137,10 +137,8 @@ SELECT
 	count(ii.TrackId) AS UnitsSold
 FROM 
 	invoice_items ii
-JOIN tracks t ON
-	ii.TrackId = t.TrackId 
-GROUP BY
-	t.Name
+JOIN tracks t ON ii.TrackId = t.TrackId 
+GROUP BY ii.TrackId 
 ORDER BY
 	UnitsSold DESC;
 --
@@ -152,7 +150,19 @@ JOIN genres g ON t.GenreId = g.GenreId
 GROUP BY Genre;
 --
 
---Track lengths
+--Tracks lengths w/ #unitssold and genre
+SELECT
+	t.TrackId,
+	t.Name,
+	count(ii.TrackId) AS UnitsSold,
+	t.Milliseconds,
+	t.Milliseconds / 1000 AS Lenght_Seconds,
+	g.Name AS Genre
+FROM tracks t
+LEFT JOIN invoice_items ii ON t.TrackId = ii.TrackId 
+JOIN genres g ON t.GenreId = g.GenreId
+GROUP BY t.TrackId
+ORDER BY UnitsSold DESC;
 --
 
 
@@ -224,7 +234,7 @@ ORDER BY
 
 --Best Selling Artists
 SELECT
-	a2.Name ,
+	a2.Name,
 	count(ii.Quantity) AS UnitSold,
 	SUM(ii.UnitPrice) AS Income
 FROM 
@@ -290,8 +300,7 @@ FROM (
 	SELECT t.TrackId, ii.InvoiceId 
 	FROM tracks t 
 	LEFT JOIN invoice_items ii ON t.TrackId = ii.TrackId
-)
-
+);
 --
 
 --Numbers of customers and revenues by Employees
