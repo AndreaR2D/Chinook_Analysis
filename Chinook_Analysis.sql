@@ -155,7 +155,6 @@ SELECT
 	t.TrackId,
 	t.Name,
 	count(ii.TrackId) AS UnitsSold,
-	t.Milliseconds,
 	t.Milliseconds / 1000 AS Lenght_Seconds,
 	g.Name AS Genre
 FROM tracks t
