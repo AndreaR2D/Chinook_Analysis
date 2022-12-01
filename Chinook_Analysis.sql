@@ -132,15 +132,14 @@ GROUP BY Employee, Customer
 
 
 --Number of purchase for each tracks
-SELECT 
+SELECT
+	t.TrackId,
 	t.Name,
 	count(ii.TrackId) AS UnitsSold
-FROM 
-	invoice_items ii
-JOIN tracks t ON ii.TrackId = t.TrackId 
-GROUP BY ii.TrackId 
-ORDER BY
-	UnitsSold DESC;
+FROM tracks t
+LEFT JOIN invoice_items ii ON t.TrackId = ii.TrackId 
+GROUP BY t.TrackId
+ORDER BY UnitsSold DESC;
 --
 
 --Number of track by genre
@@ -173,6 +172,16 @@ JOIN media_types mt ON t.MediaTypeId = mt.MediaTypeId
 GROUP BY mt.Name;
 --
 
+-- Numbers of track in each playlists
+SELECT 
+	p.Name,
+	COUNT(DISTINCT pt.TrackId) AS Qt
+FROM playlist_track pt 
+JOIN playlists p ON pt.PlaylistId = p.PlaylistId
+GROUP BY p.Name
+ORDER BY Qt DESC;
+--
+
 -- #1 artist in each playlist w/ numbers of tracks
 WITH tempo AS (
 SELECT 
@@ -196,6 +205,8 @@ FROM tempo
 GROUP BY Playlist
 HAVING Ranking = 1;
 --
+
+
 
 	/* ========================= */
 	/* === Business Analysis === */
