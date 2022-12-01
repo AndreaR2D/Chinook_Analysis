@@ -163,7 +163,6 @@ GROUP BY t.TrackId
 ORDER BY UnitsSold DESC;
 --
 
-
 --Protected vs. non-protected media types popularity
 SELECT mt.Name, count(DISTINCT t.TrackId) AS Uniquetrack, count(t.TrackId) AS totalTrack
 FROM invoice_items ii 
