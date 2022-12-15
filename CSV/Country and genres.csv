@@ -1,0 +1,102 @@
+"Country";"InvYear";"TopGenre";"QtSold"
+Argentina;"2010";Metal;6
+Argentina;"2011";Metal;1
+Argentina;"2013";Latin;8
+Australia;"2009";Rock;9
+Australia;"2010";Rock;1
+Australia;"2011";Latin;2
+Australia;"2012";Rock;12
+Austria;"2009";Metal;2
+Austria;"2010";Rock;11
+Austria;"2012";Rock;4
+Austria;"2013";R&B/Soul;1
+Belgium;"2009";Rock;6
+Belgium;"2011";Rock;15
+Belgium;"2013";Alternative & Punk;4
+Brazil;"2009";Rock;20
+Brazil;"2010";Rock;21
+Brazil;"2011";Rock;11
+Brazil;"2012";Latin;23
+Brazil;"2013";Rock;19
+Canada;"2009";Rock;27
+Canada;"2010";Rock;18
+Canada;"2011";Rock;22
+Canada;"2012";Rock;13
+Canada;"2013";Rock;27
+Chile;"2009";Latin;6
+Chile;"2010";Drama;4
+Chile;"2011";Metal;2
+Chile;"2012";Rock;6
+Czech Republic;"2009";Rock;5
+Czech Republic;"2010";Pop;4
+Czech Republic;"2011";Rock;6
+Czech Republic;"2012";Rock;8
+Czech Republic;"2013";Rock;6
+Denmark;"2009";Metal;6
+Denmark;"2010";Rock;4
+Denmark;"2012";Rock;10
+Denmark;"2013";Rock;7
+Finland;"2009";Latin;5
+Finland;"2011";Rock;6
+Finland;"2012";Rock;1
+Finland;"2013";Rock;7
+France;"2009";Rock;12
+France;"2010";Rock;17
+France;"2011";Rock;16
+France;"2012";Metal;10
+France;"2013";Rock;14
+Germany;"2009";Rock;24
+Germany;"2010";Rock;14
+Germany;"2011";Rock;15
+Germany;"2012";Metal;11
+Germany;"2013";Rock;6
+Hungary;"2010";R&B/Soul;5
+Hungary;"2012";Rock;6
+Hungary;"2013";Rock;1
+India;"2009";Rock;6
+India;"2010";Rock;10
+India;"2011";Rock;7
+India;"2012";Alternative & Punk;7
+India;"2013";Metal;6
+Ireland;"2009";Latin;7
+Ireland;"2011";Rock;10
+Ireland;"2013";Alternative & Punk;4
+Italy;"2009";Latin;2
+Italy;"2010";Rock;4
+Italy;"2012";Rock;13
+Italy;"2013";Alternative & Punk;4
+Netherlands;"2009";Rock;3
+Netherlands;"2010";Metal;2
+Netherlands;"2011";Blues;4
+Netherlands;"2012";Rock;1
+Netherlands;"2013";Rock;14
+Norway;"2009";Rock;6
+Norway;"2011";Classical;5
+Norway;"2012";Rock;9
+Norway;"2013";Alternative & Punk;2
+Poland;"2009";Rock;8
+Poland;"2010";Latin;5
+Poland;"2012";Rock;9
+Poland;"2013";Rock;1
+Portugal;"2009";Rock;8
+Portugal;"2010";Metal;4
+Portugal;"2011";Latin;5
+Portugal;"2012";Rock;7
+Portugal;"2013";Rock;14
+Spain;"2009";Metal;1
+Spain;"2010";Metal;2
+Spain;"2011";Rock;12
+Spain;"2013";Rock;10
+Sweden;"2009";Rock;3
+Sweden;"2010";Alternative & Punk;6
+Sweden;"2012";Latin;12
+USA;"2009";Rock;32
+USA;"2010";Rock;31
+USA;"2011";Latin;31
+USA;"2012";Rock;30
+USA;"2013";Rock;38
+United Kingdom;"2009";Latin;9
+United Kingdom;"2010";Rock;14
+United Kingdom;"2011";Rock;8
+United Kingdom;"2012";Rock;7
+United Kingdom;"2013";Latin;16

@@ -46,7 +46,6 @@ I'm using this DB to practice data analysis tools such as SQL, PowerBi and R. Th
 - Country
 - Tracks
 - Customers
-- Employees
 
 # R
 
