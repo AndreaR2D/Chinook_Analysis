@@ -1,7 +1,6 @@
 # Chinook DB Analysis
-Analysis of the chinook test DB From https://www.sqlitetutorial.net
-
-I'm using this DB to practice data analysis tools such as SQL, PowerBi and R. This project is meant to evolve following my learning steps.
+- Analysis of the chinook test DB From https://www.sqlitetutorial.net
+- Business dashboard
 
 # SQL
 
@@ -46,7 +45,3 @@ I'm using this DB to practice data analysis tools such as SQL, PowerBi and R. Th
 - Country
 - Tracks
 - Customers
-
-# R
-
-***WIP***
