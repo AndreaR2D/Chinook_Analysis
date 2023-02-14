@@ -1,10 +1,16 @@
 # Chinook DB Analysis
-- Analysis of the chinook test DB From https://www.sqlitetutorial.net
-- Business dashboard
+Chinook test DB From https://www.sqlitetutorial.net
+
+This database provide infos about a record store such as records inventory, customers infos, pursage list, employees...
+
+**Exploratory analysis and Business Dashboard**
+
+## Tools used
+Excel, PowerBI, DBeaver
 
 # SQL
 
-### Exploratory analysis: Countries, Customers, Tracks and Artists
+### Exploratory analysis
 
 #### Countries
 - Countries Ranking by Customers and Purchase
