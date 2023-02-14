@@ -4,7 +4,7 @@
 
 # SQL
 
-### Quantitative analysis: Countries, Customers, Tracks and Artists
+### Exploratory analysis: Countries, Customers, Tracks and Artists
 
 #### Countries
 - Countries Ranking by Customers and Purchase
